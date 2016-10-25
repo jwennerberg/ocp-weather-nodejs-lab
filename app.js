@@ -15,13 +15,17 @@ app.get('/api/:nodekey', function(req, res) {
 
   weather.setCity(nodekey);
 
+  /*
+  weather.getDescription(function(err, desc){
+    console.log(desc);
+    res.send(desc);
+  });
+  */
   weather.getAllWeather(function(err, JSONObj){
     console.log(JSONObj);
+    res.send(JSONObj);
   });
 
-  var nodeval = randomstring.generate();
-
-  res.send(JSONObj);
   //res.send({ "value": nodekey, "source": JSONObj });
 
 });
