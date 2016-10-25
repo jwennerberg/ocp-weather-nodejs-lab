@@ -29,6 +29,8 @@ app.get('/api/:nodekey', function(req, res) {
     res.send(matches);
     if (matches !== null) {
       exec('curl -X PUT -H "Authorization: Bearer OrrVzIQ1uusnH8E2TKCp2peeJB7RiZPHVYCjtxqKcIg" -H "Content-Type: application/json" -d ' + jsonblob, (error, stdout, stderr) => {
+        console.log(`stdout: ${stdout}`);
+        console.log(`stderr: ${stderr}`);
       });
       urllib.request('http://frontend-test-tore.apps.ocp.rocks/change.php?weather=w', function (err, data, res) {
         console.log(data.toString());
