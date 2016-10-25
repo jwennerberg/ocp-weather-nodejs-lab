@@ -19,8 +19,8 @@ app.get('/api/:nodekey', function(req, res) {
 
   weather.getDescription(function(err, desc){
     console.log(desc);
-    res.send(desc);
-    var matches = str.match(/rain/);
+    //res.send(desc);
+    var matches = desc.match(/rain/);
     console.log(matches);
     res.send(matches);
   });
@@ -39,7 +39,6 @@ app.get('/', function(req, res) {
     console.log(defaultCity);
     console.log(desc);
     res.send(desc);
-    res.send(defaultCity);
   });
 });
 
