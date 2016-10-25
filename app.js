@@ -1,6 +1,7 @@
 var app = require('express')();
 var randomstring = require("randomstring");
 var weather = require('openweather-apis');
+var urllib = require('urllib');
 
 var appidkey = '08418fc2f148059776aed472e2e417b2';
 
@@ -23,6 +24,15 @@ app.get('/api/:nodekey', function(req, res) {
     var matches = desc.match(/rain/);
     console.log(matches);
     res.send(matches);
+    if (match !== null) {
+      urllib.request('http://frontend-test-tore.apps.ocp.rocks/change.php?weather=w', function (err, data, res) {
+        console.log(data.toString());
+      });
+    } else {
+      urllib.request('http://frontend-test-tore.apps.ocp.rocks/change.php?weather=s', function (err, data, res) {
+        console.log(data.toString());
+      });
+    }
   });
   /*
   weather.getAllWeather(function(err, JSONObj){
