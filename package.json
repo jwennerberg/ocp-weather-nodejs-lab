@@ -1,0 +1,24 @@
+{
+  "name": "ocp-weatherapi",
+  "version": "0.0.1",
+  "description": "weatherapi",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "redis": "^2.6.2",
+    "openweather-apis": "^3.0.0",
+    "randomstring": "^1.1.5"
+  },
+  "engine": {
+    "node": "*",
+    "npm": "*"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jwennerberg/ocp-weatherapi.git"
+  },
+  "homepage": "http://github.com/jwennerberg/ocp-weatherapi"
+}
