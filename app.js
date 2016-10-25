@@ -10,10 +10,18 @@ var appidkey = (process.env.OPENWEATHER_APIKEY || '08418fc2f148059776aed472e2e41
 var defaultCity = 'Sigtuna';
 
 var frontendUrl = (process.env.FRONTEND_SERVICE_IP || 'frontend-test-tore.apps.ocp.rocks');
-var ocToken = process.env.OC_TOKEN;
+//var ocToken = process.env.OC_TOKEN;
+var ocToken;
 var ocpApi = process.env.KUBERNETES_SERVICE_HOST;
 var ocpApiPort = process.env.KUBERNETES_SERVICE_PORT_HTTPS;
 var dcScaleUrl = (process.env.DC_TO_SCALE || 'https://' + ocpApi + ':' + ocpApiPort + '/oapi/v1/namespaces/test-tore/deploymentconfigs/frontend/scale');
+
+fs.readFile('/run/secrets/kubernetes.io/serviceaccount/token', 'utf8', function (err,data) {
+  if (err) {
+    return console.log(err);
+  }
+  ocToken = data;
+});
 
 app.set('port', (process.env.PORT || 8080));
 
