@@ -4,7 +4,7 @@ var weather = require('openweather-apis');
 
 var appidkey = '08418fc2f148059776aed472e2e417b2';
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 8080));
 
 weather.setAPPID(appidkey);
 weather.setLang('en');
@@ -15,12 +15,13 @@ app.get('/api/:nodekey', function(req, res) {
 
   weather.setCity(nodekey);
 
-  var nodeval = randomstring.generate();
-  res.send({ "value": nodekey, "source": "Generated" });
-
   weather.getAllWeather(function(err, JSONObj){
     console.log(JSONObj);
   });
+
+  var nodeval = randomstring.generate();
+
+  res.send({ "value": nodekey, "source": JSONObj });
 
 });
 
