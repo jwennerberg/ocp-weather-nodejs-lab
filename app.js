@@ -30,9 +30,9 @@ app.get('/city/:nodekey', function(req, res) {
 
   weather.getDescription(function(err, desc){
     console.log(desc);
+    res.send(desc);
     var matches = desc.match(/rain/);
     console.log(matches);
-    res.send(matches);
     if (matches !== null) {
       urllib.request('http://' + frontendUrl + '/change.php?weather=w', function (err, data, res) {
         console.log(data.toString());
