@@ -24,7 +24,7 @@ app.get('/api/:nodekey', function(req, res) {
     var matches = desc.match(/rain/);
     console.log(matches);
     res.send(matches);
-    if (match !== null) {
+    if (matches !== null) {
       urllib.request('http://frontend-test-tore.apps.ocp.rocks/change.php?weather=w', function (err, data, res) {
         console.log(data.toString());
       });
