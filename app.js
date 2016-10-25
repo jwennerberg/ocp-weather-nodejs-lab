@@ -6,7 +6,7 @@ var appidkey = '08418fc2f148059776aed472e2e417b2';
 
 app.set('port', (process.env.PORT || 5000));
 
-weather.setAPPID(ownKey);
+weather.setAPPID(appidkey);
 weather.setLang('en');
 weather.setCity('Sigtuna');
 
