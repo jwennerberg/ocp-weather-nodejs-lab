@@ -21,12 +21,17 @@ app.get('/api/:nodekey', function(req, res) {
 
   var nodeval = randomstring.generate();
 
-  res.send({ "value": nodekey, "source": JSONObj });
+  res.send(JSONObj);
+  //res.send({ "value": nodekey, "source": JSONObj });
 
 });
 
-weather.getDescription(function(err, desc){
-  console.log(desc);
+
+app.get('/', function(req, res) {
+  weather.getDescription(function(err, desc){
+    console.log(desc);
+    res.send(desc);
+  });
 });
 
 app.listen(app.get('port'), function(){
