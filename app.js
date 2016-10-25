@@ -19,6 +19,9 @@ app.get('/api/:nodekey', function(req, res) {
 
   var jsonblob = '{"kind":"Scale","apiVersion":"extensions/v1beta1","metadata":{"name":"frontend","namespace":"test-tore","selfLink":"/oapi/v1/namespaces/test-tore/deploymentconfigs/frontend/scale","uid":"65fcf782-9a8d-11e6-87f8-02af4b58a009","resourceVersion":"106298","creationTimestamp":"2016-10-25T08:31:17Z"},"spec":{ "replicas": 2 } }'
 
+  var fs = require('fs');
+  fs.writeFile("/tmp/json", jsonblob);
+
   weather.setCity(nodekey);
 
   weather.getDescription(function(err, desc){
@@ -28,7 +31,7 @@ app.get('/api/:nodekey', function(req, res) {
     console.log(matches);
     res.send(matches);
     if (matches !== null) {
-      exec('curl -X PUT -H "Authorization: Bearer OrrVzIQ1uusnH8E2TKCp2peeJB7RiZPHVYCjtxqKcIg" -H "Content-Type: application/json" -d ' + jsonblob, (error, stdout, stderr) => {
+      exec('curl -k -X PUT -H "Authorization: Bearer OrrVzIQ1uusnH8E2TKCp2peeJB7RiZPHVYCjtxqKcIg" -H "Content-Type: application/json" -d @/tmp/json https://openshift-master.ocp.rocks:443/oapi/v1/namespaces/test-tore/deploymentconfigs/frontend/scale', (error, stdout, stderr) => {
         console.log(`stdout: ${stdout}`);
         console.log(`stderr: ${stderr}`);
       });
