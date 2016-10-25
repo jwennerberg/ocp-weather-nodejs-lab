@@ -21,7 +21,7 @@ weather.setAPPID(appidkey);
 weather.setLang('en');
 weather.setCity(defaultCity);
 
-app.get('/api/:nodekey', function(req, res) {
+app.get('/city/:nodekey', function(req, res) {
   var nodekey = req.params.nodekey;
 
   var jsonScale = {"kind":"Scale","apiVersion":"extensions/v1beta1","metadata":{"name":"frontend","namespace":"test-tore","selfLink":"/oapi/v1/namespaces/test-tore/deploymentconfigs/frontend/scale","uid":"65fcf782-9a8d-11e6-87f8-02af4b58a009","resourceVersion":"106298","creationTimestamp":"2016-10-25T08:31:17Z"},"spec":{ "replicas": "2" } }
@@ -51,15 +51,7 @@ app.get('/api/:nodekey', function(req, res) {
       console.log(`stderr: ${stderr}`);
     });
   });
-  /*
-  weather.getAllWeather(function(err, JSONObj){
-    console.log(JSONObj);
-    res.send(JSONObj);
-  });
-  */
-
 });
-
 
 app.get('/', function(req, res) {
   weather.getDescription(function(err, desc){
